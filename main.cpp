@@ -17,7 +17,11 @@ int main() {
         for (int i = 1; i <= numbArch; i++) {
             fs::path file_path = par_dir / ("documento" + std::to_string(i) + ".txt");
             std::ofstream file(file_path);
-            file << "Este es el archivo " << i << std::endl;
+
+            for (int j = 1; j <= i; j++) {
+                file << "Línea " << j << " del documento " << i << std::endl;
+            }
+
             file.close();
         }
 
@@ -30,7 +34,11 @@ int main() {
         for (int i = 1; i <= numbArch; i++) {
             fs::path file_path = impar_dir / ("documento" + std::to_string(i) + ".txt");
             std::ofstream file(file_path);
-            file << "Este es el archivo " << i << std::endl;
+
+            for (int j = 1; j <= i; j++) {
+                file << "Línea " << j << " del documento " << i << std::endl;
+            }
+
             file.close();
         }
 

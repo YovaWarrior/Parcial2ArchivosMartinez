@@ -10,6 +10,8 @@ int main() {
     std::cout << "¿Cuántos archivos deseas crear? ";
     std::cin >> numbArch;
 
+    fs::path peque;
+
     if (numbArch % 2 == 0) { // Si es par
         fs::path par_dir = fs::path(getenv("USERPROFILE")) / "MisDocumentos" / "par";
         fs::create_directories(par_dir); // Crear la carpeta "par" si no existe
@@ -23,6 +25,10 @@ int main() {
             }
 
             file.close();
+
+            if (i == 1 || fs::file_size(file_path) < fs::file_size(peque)) {
+                peque = file_path;
+            }
         }
 
         std::cout << "Se crearon " << numbArch << " archivos en " << par_dir << std::endl;
@@ -40,10 +46,16 @@ int main() {
             }
 
             file.close();
+
+            if (i == 1 || fs::file_size(file_path) < fs::file_size(peque)) {
+                peque = file_path;
+            }
         }
 
         std::cout << "Se crearon " << numbArch << " archivos en " << impar_dir << std::endl;
     }
+
+    std::cout << "El archivo más pequeño creado es: " << peque << std::endl;
 
     return 0;
 }
